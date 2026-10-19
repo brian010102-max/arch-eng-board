@@ -284,7 +284,7 @@ function bind() {
 }
 
 async function boot() {
-  const response = await fetch("/api/board");
+  const response = await fetch("./data.json");
   if (!response.ok) {
     document.getElementById("cards").innerHTML =
       '<p class="empty">로컬 서버에서 실행해야 합니다. start.bat 또는 python server.py 를 켜세요.</p>';
