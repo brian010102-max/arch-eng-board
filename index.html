@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>건축공학 기회보드 · 공모전과 장학금</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Shippori+Mincho:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="topbar">
+        <a class="brand" href="#top">
+          <span class="mark">AE</span>
+          Arch Eng Board
+        </a>
+        <nav class="nav">
+          <a href="#board">목록</a>
+          <a href="#guide">쓰는 법</a>
+          <a href="#calendar">일정</a>
+        </nav>
+      </header>
+
+      <section class="hero" id="top">
+        <div>
+          <p class="kicker">Architectural Engineering · 2026</p>
+          <h1>공모전과 장학금을<br /><em>도면처럼</em> 한 장에.</h1>
+          <p class="lede">
+            건축공학 학생을 기준으로 정리했습니다. 설계 공모뿐 아니라 BIM, 스마트건설, 안전, 동문·기업 장학까지
+            마감일과 함께 모아 두었습니다.
+          </p>
+        </div>
+        <aside class="title-block">
+          <dl>
+            <dt>Project</dt>
+            <dd>건축공학 기회보드</dd>
+            <dt>Sheet</dt>
+            <dd>01 / 공모 · 장학</dd>
+            <dt>Date</dt>
+            <dd id="updated">2026.10.19</dd>
+            <dt>Note</dt>
+            <dd>공식 공고를 최종 기준으로 확인</dd>
+          </dl>
+        </aside>
+      </section>
+
+      <section class="stats" aria-label="요약">
+        <div class="stat"><b id="stat-open">0</b><span>지금 접수 가능·마감 임박</span></div>
+        <div class="stat"><b id="stat-contest">0</b><span>정리된 공모전</span></div>
+        <div class="stat"><b id="stat-scholar">0</b><span>정리된 장학금</span></div>
+        <div class="stat"><b id="stat-saved">0</b><span>내가 저장한 항목</span></div>
+      </section>
+
+      <div id="urgent" class="urgent" role="status"></div>
+
+      <div class="toolbar" id="board">
+        <div class="tabs" role="tablist">
+          <button class="tab" data-kind="all" aria-selected="true">전체</button>
+          <button class="tab" data-kind="contest">공모전</button>
+          <button class="tab" data-kind="scholarship">장학금</button>
+        </div>
+        <div class="filters">
+          <label class="search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" stroke="#1a1713" stroke-width="1.8" />
+              <path d="M16.5 16.5L21 21" stroke="#1a1713" stroke-width="1.8" />
+            </svg>
+            <input id="search" type="search" placeholder="모듈러, BIM, 성적, 동문회…" />
+          </label>
+          <button class="chip active" data-chip="all" type="button">모두</button>
+          <button class="chip" data-chip="open" type="button">진행중</button>
+          <button class="chip" data-chip="fit" type="button">공학 적합</button>
+          <button class="chip" data-chip="undergrad" type="button">학부</button>
+          <button class="chip" data-chip="saved" type="button">저장함</button>
+          <select class="sort" id="sort">
+            <option value="deadline">마감순</option>
+            <option value="name">이름순</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="board">
+        <div id="cards" class="cards"></div>
+        <aside class="side">
+          <section class="panel" id="calendar">
+            <h3>앞으로의 일정</h3>
+            <ul class="timeline" id="timeline"></ul>
+          </section>
+          <section class="panel">
+            <h3>관심 목록</h3>
+            <ul class="saved" id="saved-list"></ul>
+          </section>
+        </aside>
+      </div>
+
+      <section class="guide" id="guide">
+        <h3>이 보드를 쓰는 순서</h3>
+        <ol>
+          <li>이번 주 마감과 ‘공학 적합’ 필터부터 봅니다. 건축공학은 설계보다 BIM·시공·안전·모듈러가 포트폴리오에 잘 붙습니다.</li>
+          <li>장학금은 국가장학금 → 이공계 우수 → 건설 협회·기업 → 학과 동문·기부자 순으로 확인합니다.</li>
+          <li>카드의 공식 안내를 연 뒤, 학과 사무실 마감이 더 빠를 수 있으니 게시판을 한 번 더 봅니다.</li>
+        </ol>
+      </section>
+
+      <footer>
+        2026년 10월 19일 기준 공개 공고를 정리한 학습용 보드입니다. 일정·자격·상금은 주최 측 공고가 바뀌면 이 페이지보다
+        공고가 우선합니다.
+      </footer>
+    </div>
+
+    <div class="modal" id="modal" role="dialog" aria-modal="true">
+      <div class="sheet">
+        <button class="close" id="close-modal" type="button" aria-label="닫기">×</button>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+    <script src="./data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
