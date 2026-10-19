@@ -1,5 +1,7 @@
-const NOW = new Date("2026-10-19T13:27:00+09:00");
+const NOW = new Date();
 const SAVE_KEY = "arch-eng-board-saves";
+let LAST_UPDATED = "";
+let ITEMS = [];
 
 const state = {
   kind: "all",
@@ -281,10 +283,23 @@ function bind() {
   });
 }
 
-document.getElementById("updated").textContent = LAST_UPDATED.replaceAll("-", ".");
-renderStats();
-renderUrgent();
-renderCards();
-renderTimeline();
-renderSaved();
-bind();
+async function boot() {
+  const response = await fetch("/api/board");
+  if (!response.ok) {
+    document.getElementById("cards").innerHTML =
+      '<p class="empty">로컬 서버에서 실행해야 합니다. start.bat 또는 python server.py 를 켜세요.</p>';
+    return;
+  }
+  const payload = await response.json();
+  LAST_UPDATED = payload.lastUpdated;
+  ITEMS = payload.items;
+  document.getElementById("updated").textContent = LAST_UPDATED.replaceAll("-", ".");
+  renderStats();
+  renderUrgent();
+  renderCards();
+  renderTimeline();
+  renderSaved();
+  bind();
+}
+
+boot();
